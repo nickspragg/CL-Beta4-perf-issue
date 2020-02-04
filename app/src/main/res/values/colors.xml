@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="uiColor1">#b2ddf7</color>
+    <color name="uiColor2">#81d6e3</color>
+    <color name="uiColor3">#4cb5ae</color>
+    <color name="uiColor4">#ff101f</color>
+    <color name="uiColor5">#cabac8</color>
+
+    <color name="colorPrimary">@color/uiColor2</color>
+    <color name="colorPrimaryDark">@color/uiColor3</color>
+    <color name="colorAccent">@color/uiColor4</color>
+
+
+    <color name="select_transfer_account_empty_background">#FAFAFA</color>
+    <color name="select_transfer_external_account_background">#FAFAFA</color>
+    <color name="select_transfer_external_account_main_background">#F0F0F0</color>
+    <color name="select_transfer_account_keyline">#F0F0F0</color>
+
+</resources>

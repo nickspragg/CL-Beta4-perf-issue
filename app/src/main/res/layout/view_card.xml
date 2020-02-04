@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/accountViewContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:background="@color/colorPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!--CORE-FIX: Rename reference for icon_account_* in view_account -->
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@null"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="85dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <!-- CORE-FIX Removed all hard coded strings for text attributes. -->
+                <TextView
+                    android:id="@+id/titleTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true"
+                    android:text="My Account"
+                    />
+
+                <TextView
+                    android:id="@+id/accountTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="start"
+                    android:text="1231231231"
+                    />
+
+                <Space android:layout_width="500dp" android:layout_height="1dp"/> <!-- Workaround for layout not occupying full width in ListViews -->
+            </LinearLayout>
+
+            <!--CORE-FIX Rename reference for drawables in view_account.xml -->
+            <ImageView
+                android:id="@+id/dropDownArrowImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingRight="10dp"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/accountCardIndicatorImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bottomView"
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="8dp">
+                <!-- CORE-FIX Increased drawer offset so more handle stays visible. -->
+
+                <!-- CORE-FIX refactored action container to a constraint layout. This done is done so we can create a chain nicely and align all the actions -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/actionContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:gravity="bottom"
+                    android:paddingBottom="15dp" >
+
+                    <TextView
+                        android:id="@+id/payActionContainer"
+                        android:onClick="actionPay"
+                        android:drawablePadding="2dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        app:layout_constraintHorizontal_chainStyle="spread"/>
+
+                    <TextView
+                        android:id="@+id/scheduledActionContainer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="2dp"
+                        android:textAlignment="center"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/payActionContainer"
+                        app:layout_constraintEnd_toStartOf="@+id/infoActionContainer"
+                        app:layout_constraintHorizontal_chainStyle="spread"/>
+
+
+                    <!--CORE-FIX updated action text size and capitalisation  -->
+                    <TextView
+                        android:id="@+id/infoActionContainer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="2dp"
+                        android:textAlignment="center"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/scheduledActionContainer"
+                        app:layout_constraintEnd_toStartOf="@+id/alertsActionContainer"
+                        app:layout_constraintHorizontal_chainStyle="spread"/>
+
+                    <TextView
+                        android:id="@+id/alertsActionContainer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="2dp"
+                        android:textAlignment="center"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/infoActionContainer"
+                        app:layout_constraintEnd_toEndOf="@id/guideline"
+                        app:layout_constraintHorizontal_chainStyle="spread"/>
+
+                    <!--CORE-FIX Added a guideline to prevent the end text view from getting cut off-->
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_end="30dp" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:id="@+id/balancesView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/sliderHandleView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:paddingEnd="15dp"
+                        android:paddingStart="35dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/topLineLabel"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                 />
+
+                            <TextView
+                                android:id="@+id/topBalanceTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingTop="3dp">
+
+                            <TextView
+                                android:id="@+id/botLineLabel"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                />
+
+                            <TextView
+                                android:id="@+id/botBalanceTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                /> <!-- CORE-FIX Remove placeholder amount to be safe. -->
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- CORE-FIX Added in sneaky shadow for account cards. -->
+            <View android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="#0D000000"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/numberBubbleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        tools:text="0"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
